@@ -15,6 +15,13 @@ def img_rescale_baseheight(s, baseheight):
     img.save(s2)
     return s2
 
+def img_rescale(s, width, height):
+    img = Image.open(s)
+    img = img.resize((width, height), Image.ANTIALIAS)
+    s2 = s[:14] + "_resized.png"
+    img.save(s2)
+    return s2
+
 def img_show(img):
     img.show()
 
@@ -26,3 +33,10 @@ def img_prop(img):  # opens a window containing image properties
     window.title("Image Properties")
     label = Label(window, text = string, font=('times', 100, 'bold'), bg='black', fg='green')
     label.pack()
+
+# def readSensor_DHT():
+    # h,t = MyDHT.read_retry(dht.DHT22,20)
+    # temp = "%.1f" %t
+    # temperature.set(temp+ "°C"")
+    # hum = "%.1f" %h
+	# humidity.set(hum+"  %")

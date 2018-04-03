@@ -71,7 +71,7 @@ def switch_SETT():
     frame_HOME.update()
 
 def clock(time1=''):
-    time2= time.strftime('%H:%M:%S')
+    time2 = time.strftime('%H:%M:%S')
     if time2 != time1:
         time1 = time2
         label_clock.config(text=time2)
@@ -100,10 +100,10 @@ number_of_buttons = 3
 btn_HOME = Button(bot_frame, command=switch_HOME, image=img_HOME, bg='green', fg='white', relief=SUNKEN, pady=0, padx=2)
 btn_HOME.grid(row=0, column=0, sticky='we')
 
-btn_LEDS = Button(bot_frame, command=switch_LEDS, image=img_LEDS, bg='black', fg='green', relief=RAISED, pady=0, padx=2)
+btn_LEDS = Button(bot_frame, command=switch_LEDS, image=img_LEDS, bg='green', fg='green', relief=RAISED, pady=0, padx=2)
 btn_LEDS.grid(row=0, column=1, sticky='we')
 
-btn_SETT = Button(bot_frame, command=switch_SETT, image=img_SETT, bg='bisque2', fg='#000000', relief=RAISED, pady=0, padx=2)
+btn_SETT = Button(bot_frame, command=switch_SETT, image=img_SETT, bg='green', fg='#000000', relief=RAISED, pady=0, padx=2)
 btn_SETT.grid(row=0, column=2, sticky="we")
 
 for i in range(0,number_of_buttons):
@@ -115,13 +115,19 @@ for i in range(0,number_of_buttons):
 frame_HOME = Frame(window, bg='green')
 frame_HOME.pack(fill=BOTH, side=LEFT, expand=True)
 frame_HOME.update()
-image = PhotoImage(file=img_rescale_baseheight("pics/4ktest4k.jpg", frame_HOME.winfo_height()))
+fw, fh = int(frame_HOME.winfo_width()), int(frame_HOME.winfo_height())
+
+image = PhotoImage(file=img_rescale("pics/cheesyxd.jpg", frame_HOME.winfo_width(), frame_HOME.winfo_height()))
 
 label_bg = Label(frame_HOME, image=image, padx=0, pady=0)
-label_bg.grid(row=0,column=0, sticky='w')
+label_bg.place(x=0, y=0, relwidth=1, relheight=1)
 
-label_clock = Label(frame_HOME, font=('times', 100, 'bold'), bg='#06A5FB')
-label_clock.grid(row=0, column=0, sticky='n')
+label_clock = Label(frame_HOME, font=('times', int(fh/10), 'bold'), bg='#EAE6CB')
+label_clock.pack()
+
+label_weather = Label(frame_HOME, text="    99°C    20 %    ", font=('times', int(fh/20), 'bold'), bg='#EAE6CB')
+label_weather.pack()
+
 
 clock()
 
